@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 创建了一个人-->
+    <bean id="person" class="com.oracle.vo.Person">
+        <property name="name" value="詹姆斯"></property>
+        <property name="age"  value="18"></property>
+        <property name="weapon" ref="knife"></property>
+    </bean>
+
+    <!-- 创建了武器-->
+    <bean id="spear" class="com.oracle.vo.Weapon">
+        <property name="name" value="倚天剑"></property>
+        <property name="power" value="4"></property>
+    </bean>
+
+    <!-- 创建了武器-->
+    <bean id="knife" class="com.oracle.vo.Weapon">
+        <property name="name" value="屠龙刀"></property>
+        <property name="power" value="5"></property>
+    </bean>
+
+    <bean name="p,p1,p2" class="com.oracle.vo.Person">
+        <constructor-arg index="0" type="int" value="8"></constructor-arg>
+        <constructor-arg index="1" type="java.lang.String" value="kt"></constructor-arg>
+        <property name="weapon" ref="spear"></property>
+    </bean>
+
+    <bean name="p8" class="com.oracle.vo.Person">
+        <constructor-arg index="0" type="int" value="8"></constructor-arg>
+        <constructor-arg index="1" type="java.lang.String" value="ouwen"></constructor-arg>
+        <property name="weapon">
+            <bean class="com.oracle.vo.Weapon">
+                <property name="name" value="丈八蛇矛"></property>
+                <property name="power" value="7"> </property>
+            </bean>
+        </property>
+
+        <!--添加数组 -->
+        <property name="habby">
+            <array>
+                <value>唱歌</value>
+                <value>跳舞</value>
+            </array>
+        </property>
+
+        <!--添加List -->
+        <property name="skill">
+            <list>
+                <value>Java</value>
+                <value>Mysql</value>
+            </list>
+        </property>
+
+        <!--添加Set -->
+        <property name="ws">
+            <set>
+                <bean class="com.oracle.vo.Weapon">
+                    <property name="name" value="AK47"></property>
+                    <property name="power" value="66"></property>
+                </bean>
+                <bean class="com.oracle.vo.Weapon">
+                    <property name="name" value="M4A1"></property>
+                    <property name="power" value="65"></property>
+                </bean>
+                <ref bean="spear"></ref>
+            </set>
+        </property>
+
+        <!--添加Map-->
+        <property name="score">
+            <map>
+                <entry key="数学" value="88"></entry>
+                <entry key="语文" value="99"></entry>
+                <entry key="English" value="88"></entry>
+            </map>
+        </property>
+    </bean>
+
+
+
+
+    <!--<context:component-scan base-package="com.oracle.vo"></context:component-scan>-->
+</beans>
