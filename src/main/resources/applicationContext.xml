@@ -2,7 +2,39 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:list id="list">
+        <value>唱歌</value>
+        <value>篮球</value>
+        <value>游泳</value>
+    </util:list>
+
+    <util:map id="grade">
+        <entry key="java" value="88"></entry>
+        <entry key="oracle" value="99"></entry>
+        <entry key="c++" value="96"></entry>
+    </util:map>
+
+    <util:set id="wuQi">
+        <bean class="com.oracle.vo.Weapon">
+            <property name="name" value="方天画戟"></property>
+            <property name="power" value="66"></property>
+        </bean>
+        <ref bean="knife"></ref>
+    </util:set>
+
+    <!--自动装配 -->
+    <bean id="user2" class="com.oracle.vo.Person" autowire="byType">
+        <property name="name" value="张飞"></property>
+        <property name="age" value="27"></property>
+        <property name="habby" ref="list"></property>
+        <property name="ws" ref="wuQi"></property>
+        <property name="score" ref="grade"></property>
+        <property name="weapon" ref="spear"></property>
+    </bean>
 
     <!-- 创建了一个人-->
     <bean id="person" class="com.oracle.vo.Person">
@@ -28,6 +60,19 @@
         <constructor-arg index="1" type="java.lang.String" value="kt"></constructor-arg>
         <property name="weapon" ref="spear"></property>
     </bean>
+
+    <!--测试util标签 -->
+    <bean name="user" class="com.oracle.vo.Person">
+        <property name="name" value="詹姆斯"></property>
+        <property name="age" value="23"></property>
+        <property name="habby" ref="list"></property>
+        <property name="score" ref="grade"></property>
+        <property name="ws" ref="wuQi"></property>
+        <property name="weapon" ref="spear"></property>
+    </bean>
+
+    <!--测试p标签 -->
+    <bean id="user1" class="com.oracle.vo.Person" p:name="科比" p:age="35" p:habby-ref="list" p:weapon-ref="spear"></bean>
 
     <bean name="p8" class="com.oracle.vo.Person">
         <constructor-arg index="0" type="int" value="8"></constructor-arg>

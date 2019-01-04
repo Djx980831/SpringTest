@@ -65,7 +65,29 @@ public class Person {
         return "Person{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
-                '}';
+                ", habby=" + Arrays.toString(habby) +
+                ", skill=" + skill +
+                ", ws=" + ws +
+                    ", score=" + score +
+                    ", weapon=" + weapon.getName() +
+                    '}';
+
+    }
+
+    public String[] getHabby() {
+        return habby;
+    }
+
+    public List<String> getSkill() {
+        return skill;
+    }
+
+    public Set<Weapon> getWs() {
+        return ws;
+    }
+
+    public Map<String, Integer> getScore() {
+        return score;
     }
 
     public void attack(){
@@ -97,7 +119,9 @@ public class Person {
         System.out.println("两个参数的构造方法。");
     }
 
-    public Person(){}
+    public Person(){
+        System.out.println("创建了一个工厂。");
+    }
 
 
     public Person(int age,String name) {

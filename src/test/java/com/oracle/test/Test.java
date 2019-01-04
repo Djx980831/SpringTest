@@ -10,12 +10,15 @@ public class Test {
 
         BeanFactory factory = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        Person p = (Person)factory.getBean("p");
+        Person user = (Person)factory.getBean("person");
+        System.out.println(user.toString());
+        user.setName("李云龙");
 
-        Person p8 = (Person)factory.getBean("p8");
+        System.out.println(user.toString());
 
-        p8.attack();
+        Person user1 = (Person)factory.getBean("person");
 
+        System.out.println(user1.toString());
     }
 
 
