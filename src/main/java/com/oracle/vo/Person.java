@@ -13,11 +13,19 @@ public class Person {
 
     String name;
     int age;
-
+    boolean falg;
     String [] habby;
     List<String> skill;
     Set<Weapon> ws;
     Map<String,Integer> score;
+
+    public boolean getFalg() {
+        return falg;
+    }
+
+    public void setFalg(boolean falg) {
+        this.falg = falg;
+    }
 
     public void setHabby(String[] habby) {
         this.habby = habby;
@@ -60,19 +68,7 @@ public class Person {
         this.age = age;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", habby=" + Arrays.toString(habby) +
-                ", skill=" + skill +
-                ", ws=" + ws +
-                    ", score=" + score +
-                    ", weapon=" + weapon.getName() +
-                    '}';
 
-    }
 
     public String[] getHabby() {
         return habby;
@@ -88,6 +84,20 @@ public class Person {
 
     public Map<String, Integer> getScore() {
         return score;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", falg=" + falg +
+                ", habby=" + Arrays.toString(habby) +
+                ", skill=" + skill +
+                ", ws=" + ws +
+                ", score=" + score +
+                ", weapon=" + weapon +
+                '}';
     }
 
     public void attack(){
@@ -129,6 +139,13 @@ public class Person {
         this.age = age;
     }
 
+    public void init(){
+        System.out.println("user ...init");
+    }
+
+    public void destory(){
+        System.out.println("user ...destory");
+    }
 }
 
 

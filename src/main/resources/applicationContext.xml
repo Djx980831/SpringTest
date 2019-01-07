@@ -26,6 +26,8 @@
         <ref bean="knife"></ref>
     </util:set>
 
+    <context:property-placeholder location="classpath:db.properties"></context:property-placeholder>
+
     <!--自动装配 -->
     <bean id="user2" class="com.oracle.vo.Person" autowire="byType">
         <property name="name" value="张飞"></property>
@@ -37,9 +39,10 @@
     </bean>
 
     <!-- 创建了一个人-->
-    <bean id="person" class="com.oracle.vo.Person">
-        <property name="name" value="詹姆斯"></property>
-        <property name="age"  value="18"></property>
+    <bean id="person" class="com.oracle.vo.Person" init-method="init" destroy-method="destory">
+        <property name="name" value="#{'勒布朗'}"></property>
+        <property name="age"  value="#{user1.getAge()>30?38:user1.age*2}"></property>
+        <property name="falg" value="#{'1234536' matches '[0-9]{6}'}"></property>
         <property name="weapon" ref="knife"></property>
     </bean>
 
@@ -126,7 +129,8 @@
     </bean>
 
 
-
+    <!--简单工厂创建对象 -->
+    <bean id="sw" class="com.oracle.vo.SimpleFactory" factory-method="getWeapon"></bean>
 
     <!--<context:component-scan base-package="com.oracle.vo"></context:component-scan>-->
 </beans>
