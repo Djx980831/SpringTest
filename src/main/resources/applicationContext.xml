@@ -130,7 +130,14 @@
 
 
     <!--简单工厂创建对象 -->
-    <bean id="sw" class="com.oracle.vo.SimpleFactory" factory-method="getWeapon"></bean>
+    <bean id="sw" class="com.oracle.vo.SimpleFactory" factory-method="getWeapon">
+        <constructor-arg index="0" value="1"></constructor-arg>
+    </bean>
 
+    <!--创建工厂 -->
+    <bean id="factory" class="com.oracle.vo.SecondFactory"></bean>
+
+    <!--工厂方法创建出来的对象-->
+    <bean id="sw1" factory-bean="factory" factory-method="getWeapon"></bean>
     <!--<context:component-scan base-package="com.oracle.vo"></context:component-scan>-->
 </beans>
